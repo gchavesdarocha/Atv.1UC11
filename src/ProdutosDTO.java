@@ -1,5 +1,4 @@
 
-
 /**
  *
  * @author Adm
@@ -40,6 +39,10 @@ public class ProdutosDTO {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    String getValor(int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
