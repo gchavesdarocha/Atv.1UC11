@@ -1,8 +1,11 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -10,13 +13,18 @@ import javax.swing.JOptionPane;
  * @author Adm
  */
 public class conectaDAO {
+
     public Connection conn;
     public Statement stmt;
 
     public conectaDAO() {
         Conectar();
+        
+        
     }
-    
+
+    private List<ProdutosDTO> listarProduto = new ArrayList<ProdutosDTO>();
+
     private void Conectar() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -41,5 +49,8 @@ public class conectaDAO {
             System.out.println("Erro no acesso ao Bando de Dados : " + sqle.getMessage());
             return;
         }
+
+        
     }
+
 }
