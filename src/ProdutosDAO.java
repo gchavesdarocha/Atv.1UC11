@@ -22,6 +22,7 @@ public class ProdutosDAO {
     public int salvar(ProdutosDTO produto) {
         int status;
         PreparedStatement st;
+        
         var conectaDAO = new conectaDAO();
         
         try {
@@ -32,10 +33,15 @@ public class ProdutosDAO {
             st.setString(3, produto.getStatus());
 
             status = st.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!!");
+            
+            
+            
             return status; // return 1 
 
         } catch (SQLException ex) {
             System.out.println("Erro ao conectar: " + ex.getMessage());
+            
             return ex.getErrorCode();
         }
     }
@@ -44,5 +50,6 @@ public class ProdutosDAO {
 
         return listagem;
     }
-
+    
+   
 }
