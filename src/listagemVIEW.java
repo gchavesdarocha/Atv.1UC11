@@ -13,7 +13,7 @@ public class listagemVIEW extends javax.swing.JFrame {
      */
     public listagemVIEW() {
         initComponents();
-        AtualizaTabela();
+        
 
     }
 
