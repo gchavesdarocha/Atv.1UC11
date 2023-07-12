@@ -80,7 +80,7 @@ public class ProdutosDAO {
         return status;
     }
 
-    public boolean atualizar(ProdutosDTO Produtos) {
+    public boolean VenderProduto(ProdutosDTO Produtos) {
         PreparedStatement st;
         var conectaDAO = new conectaDAO();
 
