@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class listagemVIEW extends javax.swing.JFrame {
@@ -12,8 +13,8 @@ public class listagemVIEW extends javax.swing.JFrame {
      * Creates new form listagemVIEW
      */
     public listagemVIEW() {
-        initComponents();
         
+        initComponents();
 
     }
 
@@ -159,8 +160,9 @@ public class listagemVIEW extends javax.swing.JFrame {
         ProdutosDAO produtao = new ProdutosDAO();
 
         produtao.Consulta(produto);
-        
 
+        listarProduto = produtao.listarProduto;
+        AtualizaTabela();
 
     }//GEN-LAST:event_ConsultaActionPerformed
 
@@ -216,9 +218,10 @@ public class listagemVIEW extends javax.swing.JFrame {
     private javax.swing.JTable listaProdutos;
     // End of variables declaration//GEN-END:variables
 
-    public void AtualizaTabela() {
+    
+    
 
-        
+    public void AtualizaTabela() {
 
         if (!listarProduto.isEmpty()) {
 

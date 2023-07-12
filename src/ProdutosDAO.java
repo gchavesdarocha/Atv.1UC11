@@ -16,9 +16,9 @@ import java.util.List;
 public class ProdutosDAO {
 
     ResultSet st;
-    ArrayList<ProdutosDTO> listagem = new ArrayList<>();
+    
 
-    private List<ProdutosDTO> listarProduto = new ArrayList<ProdutosDTO>();
+    public List<ProdutosDTO> listarProduto = new ArrayList<ProdutosDTO>();
 
     public int salvar(ProdutosDTO produto) {
         int status;
@@ -48,7 +48,7 @@ public class ProdutosDAO {
     public int Consulta(ProdutosDTO produtos) {
         int status;
         var conectaDAO = new conectaDAO();
-        listagemVIEW listagem = new listagemVIEW();
+        
         try {
 
             String sql = "select * from produtos";
@@ -65,7 +65,7 @@ public class ProdutosDAO {
                 produto.setStatus(rs.getString("status"));
 
                 listarProduto.add(produto);
-                listagem.AtualizaTabela();
+                
 
             }
 
@@ -80,5 +80,11 @@ public class ProdutosDAO {
         }
 
         return status;
+    }
+    
+    public int VenderProduto(){
+        
+        return 0;
+        
     }
 }

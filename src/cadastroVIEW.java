@@ -3,7 +3,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -11,10 +14,18 @@ import javax.swing.JOptionPane;
  */
 public class cadastroVIEW extends javax.swing.JFrame {
 
+    private final String[] tableColumns = {"Nome", "Valor ", "Status "};
+    DefaultTableModel tableModel = new DefaultTableModel(tableColumns, 0);
+
+    private List<ProdutosDTO> listarProduto = new ArrayList<ProdutosDTO>();
+
+    listagemVIEW listagem = new listagemVIEW();
+
     /**
      * Creates new form cadastroVIEW
      */
     private cadastroVIEW() {
+
         initComponents();
     }
 
@@ -158,9 +169,19 @@ public class cadastroVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
+        ProdutosDTO produto = new ProdutosDTO();
 
+        ProdutosDAO produtao = new ProdutosDAO();
+
+        produtao.Consulta(produto);
+        listarProduto = produtao.listarProduto;
+        listagem.AtualizaTabela();
+        
+        
         listagemVIEW listagem = new listagemVIEW();
         listagem.setVisible(true);
+        
+
     }//GEN-LAST:event_btnProdutosActionPerformed
 
     /**
