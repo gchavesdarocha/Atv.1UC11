@@ -96,7 +96,7 @@ public class ProdutosDAO {
 
     }
 
-    public ProdutosDTO consultarDado(String status) {
+    public ProdutosDTO listarProdutosVendidos(String status) {
         try {
 
             ProdutosDTO produtos = new ProdutosDTO();
