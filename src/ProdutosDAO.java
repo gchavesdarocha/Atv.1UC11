@@ -95,4 +95,32 @@ public class ProdutosDAO {
         }
 
     }
+
+    public ProdutosDTO consultarDado(String status) {
+        try {
+
+            ProdutosDTO produtos = new ProdutosDTO();
+            ResultSet rs;
+            PreparedStatement st;
+            var conectaDAO = new conectaDAO();
+
+            st = conectaDAO.conn.prepareStatement("SELECT * from filmes WHERE status = ? ");
+            st.setString(3, "vendido");
+            rs = st.executeQuery();
+            //verificar se a consulta encontrou o funcionário com a matrícula informada
+            if (rs.next()) { // se encontrou o funcionário, vamos carregar os dados
+
+                produtos.setNome(rs.getString("nome"));
+                produtos.setValor(Integer.SIZE);
+                produtos.setStatus(rs.getString("status"));
+                //retorna um produto consultado
+                return produtos;
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro ao conectar: " + ex.getMessage());
+            return null;
+        }
+    }
 }
