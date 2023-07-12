@@ -16,7 +16,6 @@ import java.util.List;
 public class ProdutosDAO {
 
     ResultSet st;
-    
 
     public List<ProdutosDTO> listarProduto = new ArrayList<ProdutosDTO>();
 
@@ -48,7 +47,7 @@ public class ProdutosDAO {
     public int Consulta(ProdutosDTO produtos) {
         int status;
         var conectaDAO = new conectaDAO();
-        
+
         try {
 
             String sql = "select * from produtos";
@@ -65,7 +64,6 @@ public class ProdutosDAO {
                 produto.setStatus(rs.getString("status"));
 
                 listarProduto.add(produto);
-                
 
             }
 
@@ -81,10 +79,20 @@ public class ProdutosDAO {
 
         return status;
     }
-    
-    public int VenderProduto(){
-        
-        return 0;
-        
+
+    public boolean atualizar(ProdutosDTO Produtos) {
+        PreparedStatement st;
+        var conectaDAO = new conectaDAO();
+
+        try {
+            st = conectaDAO.conn.prepareStatement("UPDATE produtos SET status = ?");
+            st.setString(3, "vendido");
+            st.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Erro ao atualizar dados " + ex.getMessage());
+            return false;
+        }
+
     }
 }
