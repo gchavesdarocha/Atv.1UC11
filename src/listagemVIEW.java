@@ -155,7 +155,11 @@ public class listagemVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void ConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaActionPerformed
-      /*  ProdutosDTO produto = new ProdutosDTO();
+
+        Vendas venda = new Vendas();
+        venda.setVisible(true);
+        
+        /*  ProdutosDTO produto = new ProdutosDTO();
 
         ProdutosDAO produtao = new ProdutosDAO();
 

@@ -63,6 +63,11 @@ public class Vendas extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btnConsultaVendidos.setText("Consultar Vendas");
+        btnConsultaVendidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaVendidosActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Voltar");
 
@@ -134,6 +139,10 @@ public class Vendas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnConsultaVendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaVendidosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultaVendidosActionPerformed
 
     /**
      * @param args the command line arguments
