@@ -19,11 +19,8 @@ public class conectaDAO {
 
     public conectaDAO() {
         Conectar();
-        
-        
-    }
 
-    private List<ProdutosDTO> listarProduto = new ArrayList<ProdutosDTO>();
+    }
 
     private void Conectar() {
         try {
@@ -50,7 +47,6 @@ public class conectaDAO {
             return;
         }
 
-        
     }
 
 }

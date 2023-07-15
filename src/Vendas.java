@@ -1,7 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -12,6 +13,11 @@ public class Vendas extends javax.swing.JFrame {
     /**
      * Creates new form Vendas
      */
+     private final String[] tableColumns = {"Nome", "Valor ", "Status "};
+    DefaultTableModel tableModel = new DefaultTableModel(tableColumns, 0);
+
+    public List<ProdutosDTO> listarProduto = new ArrayList<ProdutosDTO>();
+    
     public Vendas() {
         initComponents();
     }
@@ -27,7 +33,7 @@ public class Vendas extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblListaProduto = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnConsultaVendidos = new javax.swing.JButton();
@@ -37,7 +43,7 @@ public class Vendas extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblListaProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -55,14 +61,14 @@ public class Vendas extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblListaProduto);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Lista de produtos vendidos");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        btnConsultaVendidos.setText("Consultar Vendas");
+        btnConsultaVendidos.setText("Itens vendidos");
         btnConsultaVendidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultaVendidosActionPerformed(evt);
@@ -70,6 +76,11 @@ public class Vendas extends javax.swing.JFrame {
         });
 
         jButton1.setText("Voltar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -142,7 +153,21 @@ public class Vendas extends javax.swing.JFrame {
 
     private void btnConsultaVendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaVendidosActionPerformed
         // TODO add your handling code here:
+        
+        
+        ProdutosDAO produtos = new ProdutosDAO();
+        
+        
+       listarProduto = produtos.listarProdutosVendidos();
+        AtualizaTabela2();
+
     }//GEN-LAST:event_btnConsultaVendidosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        listagemVIEW lista = new listagemVIEW();
+        lista.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,6 +211,30 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblListaProduto;
     // End of variables declaration//GEN-END:variables
+
+public void AtualizaTabela2() {
+
+        if (!listarProduto.isEmpty()) {
+
+            ProdutosDTO produtos;
+
+            tableModel = new DefaultTableModel(tableColumns, 0);
+
+            for (int i = 0; i < listarProduto.size(); i++) {
+
+                produtos = listarProduto.get(i);
+
+                String[] rowData = {produtos.getNome(), String.valueOf(produtos.getValor()), produtos.getStatus()};
+
+                tableModel.addRow(rowData);
+            }
+
+            tblListaProduto.setModel(tableModel);
+        } else {
+            tableModel = new DefaultTableModel(tableColumns, 0);
+            tblListaProduto.setModel(tableModel);
+        }
+    }
 }
