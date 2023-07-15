@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author Gabriel
@@ -13,11 +12,13 @@ public class Vendas extends javax.swing.JFrame {
     /**
      * Creates new form Vendas
      */
-     private final String[] tableColumns = {"Nome", "Valor ", "Status "};
+    listagemVIEW listagem = new listagemVIEW();
+
+    private final String[] tableColumns = {"Nome", "Valor ", "Status "};
     DefaultTableModel tableModel = new DefaultTableModel(tableColumns, 0);
 
     public List<ProdutosDTO> listarProduto = new ArrayList<ProdutosDTO>();
-    
+
     public Vendas() {
         initComponents();
     }
@@ -153,20 +154,23 @@ public class Vendas extends javax.swing.JFrame {
 
     private void btnConsultaVendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaVendidosActionPerformed
         // TODO add your handling code here:
-        
-        
+
         ProdutosDAO produtos = new ProdutosDAO();
-        
-        
-       listarProduto = produtos.listarProdutosVendidos();
+
+        listarProduto = produtos.listarProdutosVendidos();
         AtualizaTabela2();
 
     }//GEN-LAST:event_btnConsultaVendidosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        listagemVIEW lista = new listagemVIEW();
-        lista.setVisible(true);
+        ProdutosDTO produto = new ProdutosDTO();
+        ProdutosDAO produtao = new ProdutosDAO();
+
+        produtao.Consulta(produto);
+        listagem.listarProduto = produtao.listarProduto;
+        listagem.AtualizaTabela();
+        listagem.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -214,7 +218,7 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JTable tblListaProduto;
     // End of variables declaration//GEN-END:variables
 
-public void AtualizaTabela2() {
+    public void AtualizaTabela2() {
 
         if (!listarProduto.isEmpty()) {
 

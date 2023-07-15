@@ -24,7 +24,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
     /**
      * Creates new form cadastroVIEW
      */
-    private cadastroVIEW() {
+    cadastroVIEW() {
 
         initComponents();
     }

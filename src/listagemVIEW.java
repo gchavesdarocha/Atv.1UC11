@@ -180,7 +180,12 @@ public class listagemVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_ConsultaActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        this.dispose();
+        
+        cadastroVIEW cadastro = new cadastroVIEW();
+        cadastro.setVisible(true);
+        
+        
+       
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
