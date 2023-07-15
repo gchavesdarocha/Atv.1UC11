@@ -24,7 +24,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
     /**
      * Creates new form cadastroVIEW
      */
-    private cadastroVIEW() {
+    cadastroVIEW() {
 
         initComponents();
     }
@@ -170,15 +170,15 @@ public class cadastroVIEW extends javax.swing.JFrame {
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
         ProdutosDTO produto = new ProdutosDTO();
-
         ProdutosDAO produtao = new ProdutosDAO();
 
         produtao.Consulta(produto);
-        listarProduto = produtao.listarProduto;
+        listagem.listarProduto = produtao.listarProduto;
+       
         listagem.AtualizaTabela();
         
         
-        listagemVIEW listagem = new listagemVIEW();
+        
         listagem.setVisible(true);
         
 

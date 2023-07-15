@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,15 +14,14 @@ public class listagemVIEW extends javax.swing.JFrame {
      * Creates new form listagemVIEW
      */
     public listagemVIEW() {
-        
-        initComponents();
 
+        initComponents();
     }
 
     private final String[] tableColumns = {"Nome", "Valor ", "Status "};
     DefaultTableModel tableModel = new DefaultTableModel(tableColumns, 0);
 
-    private List<ProdutosDTO> listarProduto = new ArrayList<ProdutosDTO>();
+    public List<ProdutosDTO> listarProduto = new ArrayList<ProdutosDTO>();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,7 +37,7 @@ public class listagemVIEW extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        id_produto_venda = new javax.swing.JTextPane();
+        txtVender = new javax.swing.JTextPane();
         btnVender = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         Consulta = new javax.swing.JButton();
@@ -72,7 +72,7 @@ public class listagemVIEW extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
         jLabel2.setText("Vender Produto (ID)");
 
-        jScrollPane2.setViewportView(id_produto_venda);
+        jScrollPane2.setViewportView(txtVender);
 
         btnVender.setText("Vender");
         btnVender.addActionListener(new java.awt.event.ActionListener() {
@@ -146,28 +146,46 @@ public class listagemVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
-        String id = id_produto_venda.getText();
 
+        String nome;
+
+        nome = txtVender.getText();
         ProdutosDAO produtosdao = new ProdutosDAO();
 
-        //produtosdao.venderProduto(Integer.parseInt(id));
-        //listarProdutos();
+        boolean resultado = produtosdao.VenderProduto(nome);
+
+        if (resultado == true) {
+            JOptionPane.showMessageDialog(null, "Venda cadastrada com sucesso");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Falha ao realizar o cadstro da venda");
+        }
+
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void ConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaActionPerformed
-        ProdutosDTO produto = new ProdutosDTO();
+
+        Vendas venda = new Vendas();
+        venda.setVisible(true);
+
+      /*  ProdutosDTO produto = new ProdutosDTO();
 
         ProdutosDAO produtao = new ProdutosDAO();
 
         produtao.Consulta(produto);
 
         listarProduto = produtao.listarProduto;
-        AtualizaTabela();
+        AtualizaTabela();*/
 
     }//GEN-LAST:event_ConsultaActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        this.dispose();
+        
+        cadastroVIEW cadastro = new cadastroVIEW();
+        cadastro.setVisible(true);
+        
+        
+       
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
@@ -209,17 +227,14 @@ public class listagemVIEW extends javax.swing.JFrame {
     private javax.swing.JButton Consulta;
     private javax.swing.JButton btnVender;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JTextPane id_produto_venda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable listaProdutos;
+    private javax.swing.JTextPane txtVender;
     // End of variables declaration//GEN-END:variables
-
-    
-    
 
     public void AtualizaTabela() {
 

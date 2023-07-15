@@ -16,7 +16,6 @@ import java.util.List;
 public class ProdutosDAO {
 
     ResultSet st;
-    
 
     public List<ProdutosDTO> listarProduto = new ArrayList<ProdutosDTO>();
 
@@ -48,7 +47,7 @@ public class ProdutosDAO {
     public int Consulta(ProdutosDTO produtos) {
         int status;
         var conectaDAO = new conectaDAO();
-        
+
         try {
 
             String sql = "select * from produtos";
@@ -65,7 +64,6 @@ public class ProdutosDAO {
                 produto.setStatus(rs.getString("status"));
 
                 listarProduto.add(produto);
-                
 
             }
 
@@ -81,10 +79,49 @@ public class ProdutosDAO {
 
         return status;
     }
-    
-    public int VenderProduto(){
-        
-        return 0;
-        
+
+    public boolean VenderProduto(String nome) {
+        PreparedStatement st;
+        var conectaDAO = new conectaDAO();
+
+        try {
+            st = conectaDAO.conn.prepareStatement("UPDATE produtos SET status = 'vendido' WHERE nome = ?");  
+            st.setString(1, nome);
+            st.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Erro ao atualizar dados " + ex.getMessage());
+            return false;
+        }
+
     }
+
+    public List<ProdutosDTO> listarProdutosVendidos()  {
+        try {
+            
+            
+            ResultSet rs;
+            PreparedStatement st;
+            var conectaDAO = new conectaDAO();
+
+            st = conectaDAO.conn.prepareStatement("SELECT * from produtos WHERE status = 'vendido' ");
+
+            rs = st.executeQuery();
+            //verificar se a consulta encontrou o status como vendido
+            while (rs.next()) { // se encontrou o funcionário, vamos carregar os dados
+            ProdutosDTO produtos = new ProdutosDTO();
+                produtos.setNome(rs.getString("nome"));
+                produtos.setValor(rs.getInt("valor"));
+                produtos.setStatus(rs.getString("status"));
+                listarProduto.add(produtos);
+                //retorna um produto consultado      
+            }
+            return listarProduto;
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao conectar: " + ex.getMessage());
+            return null;
+        }
+    }
+
 }
