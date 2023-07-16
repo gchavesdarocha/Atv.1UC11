@@ -3,5 +3,5 @@ Explicação sobre o que se trata o projeto
 Tecnologias utilizadas (exemplo: Java e MySQL)
 
 
-# Atividade1.UC11
+# Módulo 11
 Repositório de arquivos do projeto Leilões
