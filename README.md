@@ -4,4 +4,4 @@ Tecnologias utilizadas (exemplo: Java e MySQL)
 
 
 # Atividade1.UC11
-Repositório atividade 1
+Repositório de arquivos do projeto Leilões
